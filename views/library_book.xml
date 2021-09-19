@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="book_view_form" model="ir.ui.view">
+        <field name="name">book.form.view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="author_ids"
+                                   widget="many2many_tags"/>
+                            <field name="state"/>
+                            <field name="pages"/>
+                            <field name="notes"/>
+                        </group>
+                        <group>
+                            <field name="short_name"/>
+                            <field name="date_release"/>
+                            <field name="date_end"/>
+                            <field name="date_updated"/>
+                            <field name="cover" widget="" class="oe_avatar"/>
+                            <field name="reader_rating"/>
+                            <field name="cost_price"/>
+                            <field name="retail_price"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_view_tree" model="ir.ui.view">
+        <field name="name">book.view,tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="short_name"/>
+                <field name="author_ids"
+                       widget="many2many_tags"/>
+                <field name="date_release"/>
+                <field name="date_release"/>
+                <field name="date_updated"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_view_search" model="ir.ui.view">
+        <field name="name">book.view.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_ids"
+                       widget="many2many_tags"/>
+                <field name="date_release"/>
+                <field name="short_name"/>
+                <filter string="No Author"
+                        name="no_author"
+                        domain="[('author_ids', '=', False)]"/>
+                <group string="Group By">
+                    <!--                    <filter name="group_author" string="Author" context="{'group_by':'author_ids'}"/>-->
+                    <filter name="group_date" string="Date" domain="[]" context="{'group_by':'date_release'}"/>
+                </group>
+                <!--                <searchpanel>-->
+                <!--                    <field name="author_ids" icon="fa-building" enable_counters="1"/>-->
+                <!--                </searchpanel>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="book_view_search"/>
+    </record>
+
+
+    <menuitem id="library_book_menu" name="Books" parent="library_menu_base"
+              action="library_book_action"/>
+</odoo>

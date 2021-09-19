@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="book_category_view_form" model="ir.ui.view">
+        <field name="name">book.category.form.view</field>
+        <field name="model">library.book.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="parent_id"/>
+                            <field name="parent_path"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Categories">
+                            <field name="child_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="parent_path"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_category_view_tree" model="ir.ui.view">
+        <field name="name">book.category.view.tree</field>
+        <field name="model">library.book.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="child_ids"
+                       widget="many2many_tags"/>
+                <field name="parent_path"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_category_search_view" model="ir.ui.view">
+        <field name="name">book.category.view.search</field>
+        <field name="model">library.book.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="parent_path"/>
+                <group string="Group By">
+                    <filter name="group_categories" string="Categories" domain="[]" context="{'group_by':'parent_id'}"/>
+                </group>
+                <!--                <searchpanel>-->
+                <!--                    <field name="author_ids" icon="fa-building" enable_counters="1"/>-->
+                <!--                </searchpanel>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="library_book_category_action" model="ir.actions.act_window">
+        <field name="name">Book Categories</field>
+        <field name="res_model">library.book.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="book_category_search_view"/>
+    </record>
+
+
+    <menuitem id="library_book_category_menu" name="Book Categories" parent="library_menu_base"
+              action="library_book_category_action" sequence="2"/>
+</odoo>
