@@ -11,16 +11,32 @@
                         <group>
                             <field name="name"/>
                             <field name="parent_id"/>
-                            <field name="parent_path"/>
+                            <field name="parent_path" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Categories">
+                        <page string="Child Categories">
                             <field name="child_ids">
-                                <tree>
+                                <tree editable="bottom">
                                     <field name="name"/>
-                                    <field name="parent_path"/>
+                                    <field name="parent_path" invisible="1"/>
                                 </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="parent_id"/>
+                                        <field name="parent_path" invisible="1"/>
+                                    </group>
+                                    <notebook>
+                                        <page string="Child Categories">
+                                            <field name="child_ids">
+                                                <tree>
+                                                    <field name="name"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </form>
                             </field>
                         </page>
                     </notebook>
@@ -38,7 +54,7 @@
                 <field name="parent_id"/>
                 <field name="child_ids"
                        widget="many2many_tags"/>
-                <field name="parent_path"/>
+                <field name="parent_path" invisible="1"/>
             </tree>
         </field>
     </record>
