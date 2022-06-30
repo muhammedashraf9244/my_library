@@ -1,6 +1,12 @@
 from odoo import models, fields
-import datetime
 from odoo.tools.date_utils import end_of, start_of, add, get_month
+
+""""
+get_month(date or datetime) return start in index[0] and end in index [1] of month in date or datetime
+start_of(date or datetime, granularity="year,month,week,day") return start of any granularity(year,month,week,day)
+end_of(date or datetime, granularity="year,month,week,day") return end of any granularity(year,month,week,day)
+add(date or datetime, years=n,months=m,week=e,days=d,hours=h,minutes=m,seconds=s) add date or datetime
+"""
 
 
 class LibraryBook(models.Model):
@@ -49,7 +55,7 @@ class LibraryBook(models.Model):
         result = []
         for record in self:
             rec_name = f"{record.name}, {record.date_release}"
-        result.append((record.id, rec_name))
+            result.append((record.id, rec_name))
         return result
 
     category_id = fields.Many2one('library.book.category')
