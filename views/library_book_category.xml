@@ -11,7 +11,7 @@
                         <group>
                             <field name="name"/>
                             <field name="parent_id"/>
-                            <field name="parent_path" invisible="1"/>
+                            <field name="parent_path" invisible="0" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
@@ -86,5 +86,5 @@
 
 
     <menuitem id="library_book_category_menu" name="Book Categories" parent="library_menu_base"
-              action="library_book_category_action" sequence="2"/>
+              action="library_book_category_action" sequence="3"/>
 </odoo>

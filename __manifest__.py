@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'views/menus.xml',
         'views/library_book.xml',
+        'views/library_book_copy.xml',
         'views/library_book_category.xml',
     ],
     'application': True,

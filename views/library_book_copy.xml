@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record id="book_view_form" model="ir.ui.view">
-        <field name="name">book.form.view</field>
-        <field name="model">library.book</field>
+    <record id="book_copy_view_form" model="ir.ui.view">
+        <field name="name">book.copy.form.view</field>
+        <field name="model">library.book.copy</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -41,9 +41,9 @@
         </field>
     </record>
 
-    <record id="book_view_tree" model="ir.ui.view">
-        <field name="name">book.view,tree</field>
-        <field name="model">library.book</field>
+    <record id="book_copy_view_tree" model="ir.ui.view">
+        <field name="name">book.copy.view,tree</field>
+        <field name="model">library.book.copy</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -59,9 +59,9 @@
         </field>
     </record>
 
-    <record id="book_view_search" model="ir.ui.view">
-        <field name="name">book.view.search</field>
-        <field name="model">library.book</field>
+    <record id="book_copy_view_search" model="ir.ui.view">
+        <field name="name">book.copy.view.search</field>
+        <field name="model">library.book.copy</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
@@ -83,16 +83,16 @@
         </field>
     </record>
 
-    <record id="library_book_action" model="ir.actions.act_window">
-        <field name="name">Books</field>
-        <field name="res_model">library.book</field>
+    <record id="library_book_copy_action" model="ir.actions.act_window">
+        <field name="name">Books Copy</field>
+        <field name="res_model">library.book.copy</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="book_view_search"/>
+        <field name="search_view_id" ref="book_copy_view_search"/>
     </record>
 
 
-    <menuitem id="library_book_menu" name="Books" parent="library_menu_base"
-              action="library_book_action"
-              sequence="1"
-                />
+    <menuitem id="library_book_copy_menu" name="Books Copy" parent="library_menu_base"
+              action="library_book_copy_action"
+              sequence="2"
+    />
 </odoo>
