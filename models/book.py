@@ -34,7 +34,7 @@ class LibraryBook(models.Model):
     date_updated = fields.Datetime('Last Updated')
     pages = fields.Integer('Number of Pages', groups='base.group_user',
                            states={'lost': [('readonly', True)]},
-                           help='Total book page count', company_dependent=False)
+                           help='Total book page count', company_dependent=True)
     reader_rating = fields.Float(
         'Reader Average Rating',
         digits=(14, 4),  # Optional precision decimals,
